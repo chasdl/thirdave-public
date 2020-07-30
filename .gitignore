@@ -1,0 +1,9 @@
+.vscode
+.mypy_cache
+docker-stack.yml
+
+env-backend.env
+env-flower.env
+env-postgres.env
+backend/app/alembic/env.py
+backend/app/app/core/config.py

@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+pyjwt = "*"
+python-multipart = "*"
+requests = "*"
+celery = "*"
+passlib = {extras = ["bcrypt"],version = "*"}
+tenacity = "*"
+pydantic = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+alembic = "*"
+sqlalchemy = "*"
+
+[requires]
+python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true

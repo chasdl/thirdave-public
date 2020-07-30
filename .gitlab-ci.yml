@@ -1,0 +1,36 @@
+image: tiangolo/docker-with-compose
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  - pip install docker-auto-labels
+
+stages:
+  - build
+  - deploy
+    
+build-prod:
+  stage: build
+  script:
+    - TAG=prod FRONTEND_ENV=production sh ./scripts/build-push.sh
+  only:
+    - production
+  tags:
+    - build
+
+deploy-prod:
+  stage: deploy
+  script:
+    - >
+      DOMAIN=thirdave-prayer.com
+      TRAEFIK_TAG=thirdave-prayer.com
+      STACK_NAME=thirdave-prayer-com
+      TAG=prod
+      sh ./scripts/deploy.sh
+  environment:
+    name: production
+    url: https://thirdave-prayer.com
+  only:
+    - production
+  tags:
+    - swarm
+    - prod
